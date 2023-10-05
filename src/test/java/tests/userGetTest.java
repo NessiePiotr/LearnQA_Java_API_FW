@@ -60,9 +60,7 @@ public class userGetTest extends BaseTestCase {
         Response responseUserData = apiCoreRequests.makeGetRequest("https://playground.learnqa.ru/api/user/1", header, cookie);
 
         Assertions.assertJsonHasField(responseUserData, "username");
-        Assertions.assertJsonHasNotField(responseUserData, "firstName");
-        Assertions.assertJsonHasNotField(responseUserData, "lastName");
-        Assertions.assertJsonHasNotField(responseUserData, "email");
+        Assertions.assertJsonHasNotFields(responseUserData, new String[]{"firstName", "lastName", "email"});
     }
 
 }
