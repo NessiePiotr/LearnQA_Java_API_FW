@@ -1,5 +1,8 @@
 package tests;
 
+import io.qameta.allure.Issue;
+import io.qameta.allure.Severity;
+import io.qameta.allure.TmsLink;
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
@@ -7,16 +10,25 @@ import lib.ApiCoreRequests;
 import lib.Assertions;
 import lib.BaseTestCase;
 import lib.DataGenerate;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import static io.qameta.allure.SeverityLevel.CRITICAL;
 
 public class UserEditTest extends BaseTestCase {
 
     private final ApiCoreRequests apiCoreRequests = new ApiCoreRequests();
 
     @Test
+    @DisplayName("CASE 1. Edit user that have been just created")
+    @Issue("Course")
+    @Severity(CRITICAL)
+    @Tag("Positive")
+    @TmsLink("TMS-456")
     public void testEditJustCreatedTest(){
         //GENERATE USER
         Map<String, String> userData = DataGenerate.getRegistrationData();
@@ -66,6 +78,10 @@ public class UserEditTest extends BaseTestCase {
     }
 
     @Test
+    @DisplayName("CASE 2. Edit not authorized user")
+    @Issue("HomeWork")
+    @Tag("Negative")
+    @TmsLink("TMS-456")
     public void testEditNotAuthTest() {
         //GENERATE USER
         Map<String, String> userData = DataGenerate.getRegistrationData();
@@ -86,6 +102,10 @@ public class UserEditTest extends BaseTestCase {
     }
 
     @Test
+    @DisplayName("CASE 3. Edit user by another authorized user")
+    @Issue("HomeWork")
+    @Tag("Negative")
+    @TmsLink("TMS-456")
     public void testEditAnotherUserAuthTest() {
         //GENERATE User1 & LOGIN
         Map<String, String> userData = DataGenerate.getRegistrationData();
@@ -123,6 +143,10 @@ public class UserEditTest extends BaseTestCase {
     }
 
     @Test
+    @DisplayName("CASE 4. Edit with wrong email")
+    @Issue("HomeWork")
+    @Tag("Negative")
+    @TmsLink("TMS-456")
     public void testEditWrongEmailTest() {
         // GENERATE USER & LOGIN
         Map<String, String> userData = DataGenerate.getRegistrationData();
@@ -150,6 +174,10 @@ public class UserEditTest extends BaseTestCase {
     }
 
     @Test
+    @DisplayName("CASE 5. Edit with short name")
+    @Issue("HomeWork")
+    @Tag("Negative")
+    @TmsLink("TMS-456")
     public void testEditShortFirstNameTest() {
         // GENERATE USER & LOGIN
         Map<String, String> userData = DataGenerate.getRegistrationData();
